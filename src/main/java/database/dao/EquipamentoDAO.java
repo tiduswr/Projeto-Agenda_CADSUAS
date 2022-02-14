@@ -108,7 +108,7 @@ public class EquipamentoDAO implements CRUD<Equipamento, String>{
 
     @Override
     public boolean update(Equipamento dados) {
-        String sql = "UPDATE funcionarios SET numIdentificador=<T>, nome=<T>, email=<T>, ddd_telefone=<T>, num_telefone=<T>, num_endereco=<T>, "
+        String sql = "UPDATE equipamentos SET numIdentificador=<T>, nome=<T>, email=<T>, ddd_telefone=<T>, num_telefone=<T>, num_endereco=<T>, "
                                             + "rua_endereco=<T>, bairro_endereco=<T>, cidade_endereco=<T>, estado_endereco=<T>, "
                                             + "WHERE id_municipio=" + munId + " AND id=" + String.valueOf(dados.getIdDatabase());
         try {
@@ -132,7 +132,7 @@ public class EquipamentoDAO implements CRUD<Equipamento, String>{
     @Override
     public boolean delete(String numIdentificador) {
         Equipamento find = read(numIdentificador);
-        String sql = "DELETE FROM equipamentos WHERE numIdentificador=" + numIdentificador + " AND id_municipio=" + munId;
+        String sql = "DELETE FROM equipamentos WHERE id=<T> AND id_municipio=" + munId;
         
         try {
             if(find != null){

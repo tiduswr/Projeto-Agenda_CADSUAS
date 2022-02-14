@@ -3,11 +3,12 @@ package datamodel;
 import java.util.Date;
 
 public class Lei {
-    private int id, num;
+    private long id;
+    private int num;
     private Date data;
     private String agrupamento, descricao;
 
-    public Lei(int id, int num, Date data, String agrupamento, String descricao) {
+    public Lei(long id, int num, Date data, String agrupamento, String descricao) {
         this.id = id;
         this.num = num;
         this.data = data;
@@ -17,11 +18,11 @@ public class Lei {
     
     public Lei(){}
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

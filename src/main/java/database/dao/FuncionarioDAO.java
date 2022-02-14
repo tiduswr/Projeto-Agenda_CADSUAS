@@ -154,7 +154,7 @@ public class FuncionarioDAO implements CRUD<Funcionario, String>{
             return teste != null && dados.getIdDatabase() == teste.getIdDatabase();
             
         } catch (SQLException ex) {
-            SQL_ERROR_LOG.message("Error in update Conta!", ex);
+            SQL_ERROR_LOG.message("Error in update Funcionario!", ex);
         }
         
         return false;
@@ -163,7 +163,7 @@ public class FuncionarioDAO implements CRUD<Funcionario, String>{
     @Override
     public boolean delete(String cpf) {
         Funcionario find = read(cpf);
-        String sql = "DELETE FROM funcionarios WHERE id=" + cpf + " AND id_municipio=" + munId;
+        String sql = "DELETE FROM funcionarios WHERE id=<T> AND id_municipio=" + munId;
         
         try {
             if(find != null){
