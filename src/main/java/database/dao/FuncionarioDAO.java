@@ -163,7 +163,7 @@ public class FuncionarioDAO implements CRUD<Funcionario, String>{
     @Override
     public boolean delete(String cpf) {
         Funcionario find = read(cpf);
-        String sql = "DELETE FROM funcionarios WHERE id=<T>";
+        String sql = "DELETE FROM funcionarios WHERE cpf=" + cpf + " AND id_municipio=" + munId;
         
         try {
             if(find != null){

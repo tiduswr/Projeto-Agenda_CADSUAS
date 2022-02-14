@@ -1,7 +1,9 @@
 package database.dao;
 
 import database.CRUD;
+import datamodel.Endereco;
 import datamodel.Equipamento;
+import datamodel.Telefone;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -39,6 +41,29 @@ public class EquipamentoDAO implements CRUD<Equipamento, String>{
         return sql;
     }
     
+    private Equipamento fillEquipamento(ResultSet rs) throws SQLException{
+        Equipamento e = new Equipamento();
+        
+        e.setEmail(rs.getString("email"));
+        e.setIdDatabase(rs.getLong("id"));
+        e.setNome(rs.getString("nome"));
+        e.setNumIdentificador(rs.getString("numIdentificador"));
+        
+        Telefone t = new Telefone(rs.getInt("ddd_telefone"), rs.getString(rs.getString("num_telefone")));
+        Endereco end = new Endereco();
+        
+        end.setNumCasa(rs.getInt("num_endereco"));
+        end.setRua(rs.getString("rua_endereco"));
+        end.setBairro(rs.getString("bairro_endereco"));
+        end.setCidade(rs.getString("cidade_endereco"));
+        end.setEstado("estado_endereco");
+        
+        e.setFone(t);
+        e.setEndereco(end);
+        
+        return e;
+    }
+    
     @Override
     public boolean create(Equipamento dados) {
         Equipamento find = read(dados.getNumIdentificador());
@@ -62,23 +87,86 @@ public class EquipamentoDAO implements CRUD<Equipamento, String>{
     }
 
     @Override
-    public Equipamento read(String searchValue) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Equipamento read(String numIdentificador) {
+        String sql = "SELECT * FROM equipamentos WHERE numIdentificador=" + numIdentificador + " AND id_municipio=" + munId;
+        
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            if(rs != null && !rs.isClosed()){
+                Equipamento e = fillEquipamento(rs);
+                closeStatementAndResultSet(rs, st);
+                return e;
+            }
+            closeStatementAndResultSet(rs, st);
+        } catch (SQLException ex) {
+            SQL_ERROR_LOG.message("Error in read Equipamentos!", ex);
+        }
+        
+        return null;
     }
 
     @Override
     public boolean update(Equipamento dados) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "UPDATE funcionarios SET numIdentificador=<T>, nome=<T>, email=<T>, ddd_telefone=<T>, num_telefone=<T>, num_endereco=<T>, "
+                                            + "rua_endereco=<T>, bairro_endereco=<T>, cidade_endereco=<T>, estado_endereco=<T>, "
+                                            + "WHERE id_municipio=" + munId + " AND id=" + String.valueOf(dados.getIdDatabase());
+        try {
+            sql = createSql(dados, sql);
+                      
+            Statement st = con.createStatement();
+            st.execute(sql);
+            closeStatementAndResultSet(null, st);
+            
+            Equipamento teste = read(dados.getNumIdentificador());
+            
+            return teste != null && dados.getIdDatabase() == teste.getIdDatabase();
+            
+        } catch (SQLException ex) {
+            SQL_ERROR_LOG.message("Error in update Equipamento!", ex);
+        }
+        
+        return false;
     }
 
     @Override
-    public boolean delete(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean delete(String numIdentificador) {
+        Equipamento find = read(numIdentificador);
+        String sql = "DELETE FROM equipamentos WHERE numIdentificador=" + numIdentificador + " AND id_municipio=" + munId;
+        
+        try {
+            if(find != null){
+                sql = sql.replaceFirst("<T>",String.valueOf(find.getIdDatabase()));
+                Statement st = con.createStatement();
+                
+                st.execute(sql);
+                closeStatementAndResultSet(null, st);
+                return true;
+            }
+        } catch (SQLException ex) {
+            SQL_ERROR_LOG.message("Error in delete Equipamentos!", ex);
+        }
+        return false;
     }
 
     @Override
     public ArrayList<Equipamento> list() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "SELECT * FROM equipamentos WHERE id_municipio=" + munId;
+        
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            ArrayList<Equipamento> l = new ArrayList<>();
+            
+            while(rs.next()){
+                l.add(fillEquipamento(rs));
+            }
+            closeStatementAndResultSet(rs, st);
+            return l;
+        } catch (SQLException ex) {
+            SQL_ERROR_LOG.message("Error in create list of Equipamentos!", ex);
+        }
+        return null;
     }
 
 

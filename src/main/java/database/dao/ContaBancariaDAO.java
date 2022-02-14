@@ -97,7 +97,8 @@ public class ContaBancariaDAO implements CRUD<ContaBancaria, String>{
 
     @Override
     public boolean update(ContaBancaria dados) {
-        String sql = "UPDATE contas SET nome=<T>, numero=<T>, agencia=<T>, tipo=<T>, status=<T> WHERE id_municipio=<T> AND id=<T>";
+        String sql = "UPDATE contas SET nome=<T>, numero=<T>, agencia=<T>, tipo=<T>, status=<T> "
+                            + "WHERE id_municipio=<T> AND id=<T>";
         
         try {
             
@@ -123,7 +124,7 @@ public class ContaBancariaDAO implements CRUD<ContaBancaria, String>{
     public boolean delete(String key) {
         ContaBancaria find = read(key);
         
-        String sql = "DELETE FROM contas WHERE id=<T>";
+        String sql = "DELETE FROM contas WHERE id=<T> AND id_municipio=" + munId;
         
         try {
             if(find != null){

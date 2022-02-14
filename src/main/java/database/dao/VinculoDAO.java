@@ -89,7 +89,7 @@ public class VinculoDAO implements CRUD<Vinculo, String>{
     @Override
     public boolean update(Vinculo dados) {        
         String sql = "UPDATE vinculos SET cpf=<T>, cargo_enum=<T>, equipamento_enum=<T>, id_equipamento=<T>, "
-                + "id_municipio=<T> WHERE id_equipamento=" + equipId + " AND id_municipio=" + munId;;
+                + "id_municipio=<T> WHERE id_equipamento=" + equipId + " AND id_municipio=" + munId;
         try {
             
             sql = createSql(dados, sql);
@@ -112,7 +112,7 @@ public class VinculoDAO implements CRUD<Vinculo, String>{
     @Override
     public boolean delete(String cpf) {
         Vinculo find = read(cpf);
-        String sql = "DELETE FROM vinculos WHERE id=<T>";
+        String sql = "DELETE FROM vinculos WHERE id=<T> AND id_municipio=" + munId;
         
         try {
             if(find != null){
