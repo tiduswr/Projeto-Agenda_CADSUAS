@@ -99,4 +99,8 @@ public enum Cargo {
         }
     }
     
+    public static int getQtdCargos(){
+        return 7;
+    }
+    
 }

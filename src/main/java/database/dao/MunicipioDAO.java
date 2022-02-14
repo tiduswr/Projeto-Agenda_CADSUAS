@@ -21,13 +21,14 @@ public class MunicipioDAO implements CRUD<Municipio, String>{
     private String createSql(Municipio data, String sql){
         sql = sql.replaceFirst("<T>", "'" + data.getNome() + "'");
         sql = sql.replaceFirst("<T>", "'" + data.getUf() + "'");
+        sql = sql.replaceFirst("<T>", "'" + data.getIconPath() + "'");
         return sql;
     }
     
     @Override
     public boolean create(Municipio dados) {
         Municipio find = read(dados.getNome() + "-" + dados.getUf());
-        String sql = "INSERT INTO municipios (nome, uf) VALUES (<T>, <T>)";
+        String sql = "INSERT INTO municipios (nome, uf, iconPath) VALUES (<T>, <T>, <T>)";
         sql = createSql(dados, sql);
         
         try {
@@ -63,6 +64,7 @@ public class MunicipioDAO implements CRUD<Municipio, String>{
                     m.setId(rs.getLong("id"));
                     m.setNome(rs.getString("nome"));
                     m.setUf(rs.getString("uf"));
+                    m.setIconPath(rs.getString("iconPath"));
                     
                     closeStatementAndResultSet(rs, st);
                     

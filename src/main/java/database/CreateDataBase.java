@@ -35,7 +35,7 @@ public class CreateDataBase {
     
     private static void readTextFileWithSqlInstructions(){
         try {
-            String  x = FileUtils.readFileToString(new File("sqlInstructions.query"), (Charset) null);
+            String  x = FileUtils.readFileToString(new File("sqlInstructions.sql"), (Charset) null);
             sqlTables.addAll(Arrays.asList(x.split(";")));
         } catch (IOException ex) {
             Logger.getLogger(CreateDataBase.class.getName()).log(Level.SEVERE, null, ex);

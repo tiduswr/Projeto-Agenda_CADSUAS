@@ -20,7 +20,7 @@ public class main {
         CreateDataBase.createDataBaseAndTables(c);
         
         MunicipioDAO m = new MunicipioDAO(c.getConnection());
-        System.out.println(m.create(new Municipio(-1,"Coremas", "PB")));
+        System.out.println(m.create(new Municipio(-1,"Coremas", "PB", null)));
         
         ContaBancariaDAO cc = new ContaBancariaDAO(c.getConnection(), m.read("Coremas-PB").getId());
         System.out.println(cc.create(new ContaBancaria(-1, "555", "CC HARLLEM", "329035", "FEAS", true)));

@@ -73,7 +73,23 @@ public enum EquipamentoTipo {
         }
         
     }, 
-    Outro(9){
+    CT(9){
+    
+        @Override
+        public String toString(){
+          return "Conselho Tutelar";
+        }
+        
+    }, 
+    CMDCA(10){
+    
+        @Override
+        public String toString(){
+          return "CMDCA";
+        }
+        
+    }, 
+    OUTRO(11){
     
         @Override
         public String toString(){
@@ -113,10 +129,18 @@ public enum EquipamentoTipo {
             case 8:
                 return EquipamentoTipo.Acolhimento;
             case 9:
-                return EquipamentoTipo.Outro;
+                return EquipamentoTipo.CT;
+            case 10:
+                return EquipamentoTipo.CMDCA;
+            case 11:
+                return EquipamentoTipo.OUTRO;
             default:
                 return null;
         }
+    }
+    
+    public static int getQtdEquipamentos(){
+        return 11;
     }
     
 }
