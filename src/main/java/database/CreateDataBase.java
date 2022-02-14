@@ -20,7 +20,7 @@ public class CreateDataBase {
             "data                   TEXT(10) NOT NULL,\n" +
             "agrupamento            TEXT(100) NOT NULL,\n" +
             "descricao              TEXT(100) NOT NULL,\n" +
-            "id_municipio           INTEGER,\n" +
+            "id_municipio           INTEGER NOT NULL,\n" +
             "FOREIGN KEY(id_municipio) REFERENCES municipios(id) ON DELETE CASCADE ON UPDATE CASCADE\n" +
         ");",
         
@@ -31,7 +31,7 @@ public class CreateDataBase {
             "agencia                TEXT(50) NOT NULL,\n" +
             "tipo                   TEXT(50) NOT NULL,\n" +
             "status                 INTEGER NOT NULL,\n" +
-            "id_municipio           INTEGER,\n" +
+            "id_municipio           INTEGER NOT NULL,\n" +
             "FOREIGN KEY(id_municipio) REFERENCES municipios(id) ON DELETE CASCADE ON UPDATE CASCADE\n" +
         ");",
         
@@ -40,7 +40,7 @@ public class CreateDataBase {
             "email                  TEXT(50) NOT NULL UNIQUE,\n" +
             "senha                  TEXT(50) NOT NULL,\n" +
             "tipo                   TEXT(50) NOT NULL,\n" +
-            "id_municipio           INTEGER,\n" +
+            "id_municipio           INTEGER NOT NULL,\n" +
             "FOREIGN KEY(id_municipio) REFERENCES municipios(id) ON DELETE CASCADE ON UPDATE CASCADE\n" +
         ");",
         
@@ -65,8 +65,8 @@ public class CreateDataBase {
             "cpf                TEXT(14) NOT NULL,\n" +
             "cargo_enum      	INTEGER NOT NULL,\n" +
             "equipamento_enum	INTEGER NOT NULL,\n" +
-            "id_equipamento     INTEGER,\n" +
-            "id_municipio       INTEGER,\n" +
+            "id_equipamento     INTEGER NOT NULL,\n" +
+            "id_municipio       INTEGER NOT NULL,\n" +
             "FOREIGN KEY(id_equipamento) REFERENCES equipamentos(id) ON DELETE CASCADE ON UPDATE CASCADE,\n" +
             "FOREIGN KEY(id_municipio) REFERENCES municipios(id) ON DELETE CASCADE ON UPDATE CASCADE\n" +
         ");",
@@ -90,7 +90,7 @@ public class CreateDataBase {
             "bairro_endereco	TEXT NOT NULL,\n" +
             "cidade_endereco	TEXT NOT NULL,\n" +
             "estado_endereco	TEXT NOT NULL,\n" +
-            "id_municipio       INTEGER,\n" +
+            "id_municipio       INTEGER NOT NULL,\n" +
             "FOREIGN KEY(id_municipio) REFERENCES municipios(id) ON DELETE CASCADE ON UPDATE CASCADE\n" +
         ");"
             

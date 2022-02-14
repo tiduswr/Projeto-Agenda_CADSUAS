@@ -1,10 +1,10 @@
 package datamodel;
 
 public class EmailComSenha {
-    private int id;
+    private long id;
     private String email, senha, tipo;
 
-    public EmailComSenha(int id, String email, String senha, String tipo) {
+    public EmailComSenha(long id, String email, String senha, String tipo) {
         this.id = id;
         this.email = email;
         this.senha = senha;
@@ -13,11 +13,11 @@ public class EmailComSenha {
     
     public EmailComSenha(){}
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

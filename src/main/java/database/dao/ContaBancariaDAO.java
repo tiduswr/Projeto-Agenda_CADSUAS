@@ -98,7 +98,7 @@ public class ContaBancariaDAO implements CRUD<ContaBancaria, String>{
     @Override
     public boolean update(ContaBancaria dados) {
         String sql = "UPDATE contas SET nome=<T>, numero=<T>, agencia=<T>, tipo=<T>, status=<T> "
-                            + "WHERE id_municipio=<T> AND id=<T>";
+                            + "WHERE id=<T>";
         
         try {
             

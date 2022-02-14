@@ -110,7 +110,7 @@ public class EquipamentoDAO implements CRUD<Equipamento, String>{
     public boolean update(Equipamento dados) {
         String sql = "UPDATE equipamentos SET numIdentificador=<T>, nome=<T>, email=<T>, ddd_telefone=<T>, num_telefone=<T>, num_endereco=<T>, "
                                             + "rua_endereco=<T>, bairro_endereco=<T>, cidade_endereco=<T>, estado_endereco=<T>, "
-                                            + "WHERE id_municipio=" + munId + " AND id=" + String.valueOf(dados.getIdDatabase());
+                                            + "WHERE id=" + String.valueOf(dados.getIdDatabase());
         try {
             sql = createSql(dados, sql);
                       

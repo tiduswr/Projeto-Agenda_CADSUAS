@@ -140,7 +140,7 @@ public class FuncionarioDAO implements CRUD<Funcionario, String>{
         String sql = "UPDATE funcionarios SET nome=<T>, cpf=<T>, escolaridade=<T>, profissao=<T>, email=<T>, "
                 + "dt_nascimento=<T>, num_rg=<T>, og_rg=<T>, uf_rg=<T>, dt_emissao_rg=<T>, ddd_telefone=<T>, "
                 + "num_telefone=<T>, num_endereco=<T>, rua_endereco=<T>, bairro_endereco=<T>, cidade_endereco=<T>, "
-                + "estado_endereco=<T> WHERE id_municipio=<T> AND id=" + String.valueOf(dados.getIdDatabase());
+                + "estado_endereco=<T> WHERE id=" + String.valueOf(dados.getIdDatabase());
         try {
             
             sql = createSql(dados, sql);

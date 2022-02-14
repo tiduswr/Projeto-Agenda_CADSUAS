@@ -30,7 +30,7 @@ public class LeiDAO implements CRUD<Lei, String>{
     }
     
     private String createSql(Lei dados, String sql){
-        sql = sql.replaceFirst("<T>", "'" + dados.getNum() + "'");
+        sql = sql.replaceFirst("<T>", String.valueOf(dados.getNum()));
         sql = sql.replaceFirst("<T>", "'" + dados.getData() + "'");
         sql = sql.replaceFirst("<T>", "'" + dados.getAgrupamento() + "'");
         sql = sql.replaceFirst("<T>", "'" + dados.getDescricao() + "'");
@@ -108,7 +108,7 @@ public class LeiDAO implements CRUD<Lei, String>{
     @Override
     public boolean update(Lei dados) {
         String sql = "UPDATE leis SET num=<T>, data=<T>, agrupamento=<T>, descricao=<T>" 
-                    + " WHERE id_municipio=<T> AND id=" + String.valueOf(dados.getId());
+                    + " WHERE id=" + String.valueOf(dados.getId());
         try {
             
             sql = createSql(dados, sql);
