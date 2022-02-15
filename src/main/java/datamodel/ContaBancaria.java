@@ -5,7 +5,7 @@ public class ContaBancaria {
     private String nome, agencia, num, tipo;
     private boolean status;
 
-    public ContaBancaria(int id, String agencia, String nome, String num, String tipo, boolean status) {
+    public ContaBancaria(long id, String agencia, String nome, String num, String tipo, boolean status) {
         this.id = id;
         this.nome = nome;
         this.num = num;

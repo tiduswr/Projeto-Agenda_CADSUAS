@@ -25,7 +25,6 @@ public class VinculoDAO implements CRUD<Vinculo, String>{
     private String createSql(Vinculo dados, String sql){
         sql = sql.replaceFirst("<T>", "'" + dados.getCpf() + "'");
         sql = sql.replaceFirst("<T>", String.valueOf(dados.getCargo().getValue()));
-        sql = sql.replaceFirst("<T>", String.valueOf(dados.getEquip().getValue()));
         sql = sql.replaceFirst("<T>", equipId);
         sql = sql.replaceFirst("<T>", munId);
         return sql;
@@ -37,7 +36,6 @@ public class VinculoDAO implements CRUD<Vinculo, String>{
         v.setId(rs.getLong("id"));
         v.setCpf(rs.getString("cpf"));
         v.setCargo(Cargo.getByInt(rs.getInt("cargo_enum")));
-        v.setEquip(EquipamentoTipo.getByInt(rs.getInt("equipamento_enum")));
         v.setIdEquip(rs.getInt("id_equipamento"));
         
         return v;
@@ -51,8 +49,8 @@ public class VinculoDAO implements CRUD<Vinculo, String>{
     @Override
     public boolean create(Vinculo dados) {
         Vinculo find = read(dados.getCpf());
-        String sql = "INSERT INTO vinculos (cpf, cargo_enum, equipamento_enum, id_equipamento, id_municipio) "
-                                            + "VALUES (<T>, <T>, <T>, <T>, <T>)";
+        String sql = "INSERT INTO vinculos (cpf, cargo_enum, id_equipamento, id_municipio) "
+                                            + "VALUES (<T>, <T>, <T>, <T>)";
         try{
             if(find == null){
                 sql = createSql(dados, sql);

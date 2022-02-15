@@ -9,9 +9,11 @@ public class Equipamento {
     private Endereco endereco;
     private Telefone fone;
     private String email;
+    private EquipamentoTipo tipo;
     private ArrayList<Vinculo> funcionarios;
     
-    public Equipamento(long idDatabase, String numIdentificador, String nome, Endereco endereco, Telefone fone, String email) {
+    public Equipamento(long idDatabase, String numIdentificador, String nome, Endereco endereco, Telefone fone, String email, 
+            EquipamentoTipo tipo) {
         this.idDatabase = idDatabase;
         this.numIdentificador = numIdentificador;
         this.nome = nome;
@@ -19,6 +21,7 @@ public class Equipamento {
         this.fone = fone;
         this.email = email;
         this.funcionarios = new ArrayList<>();
+        this.tipo = tipo;
     }
     
     public Equipamento(){
@@ -106,6 +109,14 @@ public class Equipamento {
 
     public void setFuncionarios(ArrayList<Vinculo> funcionarios) {
         this.funcionarios = funcionarios;
+    }
+
+    public EquipamentoTipo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(EquipamentoTipo tipo) {
+        this.tipo = tipo;
     }
     
 }

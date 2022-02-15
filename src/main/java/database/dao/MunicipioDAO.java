@@ -21,7 +21,7 @@ public class MunicipioDAO implements CRUD<Municipio, String>{
     private String createSql(Municipio data, String sql){
         sql = sql.replaceFirst("<T>", "'" + data.getNome() + "'");
         sql = sql.replaceFirst("<T>", "'" + data.getUf() + "'");
-        sql = sql.replaceFirst("<T>", "'" + data.getIconPath() + "'");
+        sql = sql.replaceFirst("<T>","'" + data.getIconPath() + "'");
         return sql;
     }
     
@@ -83,7 +83,7 @@ public class MunicipioDAO implements CRUD<Municipio, String>{
 
     @Override
     public boolean update(Municipio dados) {
-        String sql = "UPDATE municipios SET nome=<T>, uf=<T> WHERE id=<T>";
+        String sql = "UPDATE municipios SET nome=<T>, uf=<T>, iconPath=<T> WHERE id=" + String.valueOf(dados.getId());
         
         try {
             sql = createSql(dados, sql);

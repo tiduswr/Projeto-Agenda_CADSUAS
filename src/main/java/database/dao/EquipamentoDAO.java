@@ -3,6 +3,7 @@ package database.dao;
 import database.CRUD;
 import datamodel.Endereco;
 import datamodel.Equipamento;
+import datamodel.EquipamentoTipo;
 import datamodel.Telefone;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -12,10 +13,11 @@ import java.util.ArrayList;
 import util.SQL_ERROR_LOG;
 
 public class EquipamentoDAO implements CRUD<Equipamento, String>{
+    //Metodo de busca= "numidentificado-tipoequip"
     
     private Connection con;
     private String munId;
-    private VinculoDAO v;
+    
     public EquipamentoDAO(Connection con, long munId){
         this.con = con;
         this.munId = String.valueOf(munId);
@@ -38,6 +40,8 @@ public class EquipamentoDAO implements CRUD<Equipamento, String>{
         sql = sql.replaceFirst("<T>", "'" + dados.getEndereco().getCidade() + "'");
         sql = sql.replaceFirst("<T>", "'" + dados.getEndereco().getEstado() + "'");
         sql = sql.replaceFirst("<T>", munId);
+        sql = sql.replaceFirst("<T>", String.valueOf(dados.getTipo().getValue()));
+        
         return sql;
     }
     
@@ -49,7 +53,7 @@ public class EquipamentoDAO implements CRUD<Equipamento, String>{
         e.setNome(rs.getString("nome"));
         e.setNumIdentificador(rs.getString("numIdentificador"));
         
-        Telefone t = new Telefone(rs.getInt("ddd_telefone"), rs.getString(rs.getString("num_telefone")));
+        Telefone t = new Telefone(rs.getInt("ddd_telefone"), rs.getString("num_telefone"));
         Endereco end = new Endereco();
         
         end.setNumCasa(rs.getInt("num_endereco"));
@@ -58,6 +62,7 @@ public class EquipamentoDAO implements CRUD<Equipamento, String>{
         end.setCidade(rs.getString("cidade_endereco"));
         end.setEstado("estado_endereco");
         
+        e.setTipo(EquipamentoTipo.getByInt(rs.getInt("equipamento_enum")));
         e.setFone(t);
         e.setEndereco(end);
         
@@ -66,11 +71,11 @@ public class EquipamentoDAO implements CRUD<Equipamento, String>{
     
     @Override
     public boolean create(Equipamento dados) {
-        Equipamento find = read(dados.getNumIdentificador());
+        Equipamento find = read(dados.getNumIdentificador() + "-" + String.valueOf(dados.getTipo().getValue()));
         String sql = "INSERT INTO equipamentos (numIdentificador, nome, email, ddd_telefone, num_telefone, num_endereco, "
                                             + "rua_endereco, bairro_endereco, cidade_endereco, estado_endereco, "
-                                            + "id_municipio VALUES (<T>, <T>, <T>, <T>, <T>, <T>, <T>, <T>, <T>, <T>, "
-                                            + "<T>, <T>, <T>, <T>, <T>, <T>, <T>, <T>)";
+                                            + "id_municipio, equipamento_enum) VALUES (<T>, <T>, <T>, <T>, <T>, <T>, <T>, <T>, <T>, <T>, "
+                                            + "<T>, <T>)";
         try {
             if(find == null){
                 sql = createSql(dados, sql);
@@ -87,10 +92,15 @@ public class EquipamentoDAO implements CRUD<Equipamento, String>{
     }
 
     @Override
-    public Equipamento read(String numIdentificador) {
-        String sql = "SELECT * FROM equipamentos WHERE numIdentificador=" + numIdentificador + " AND id_municipio=" + munId;
+    public Equipamento read(String key) {
+        String sql = "SELECT * FROM equipamentos WHERE numIdentificador=<T> AND equipamento_enum=<T> AND id_municipio=" + munId;
         
         try {
+            String splited[] = key.split("-");
+            
+            sql = sql.replaceFirst("<T>", "'" + splited[0] + "'");
+            sql = sql.replaceFirst("<T>", splited[1]);
+            
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             if(rs != null && !rs.isClosed()){
@@ -110,15 +120,16 @@ public class EquipamentoDAO implements CRUD<Equipamento, String>{
     public boolean update(Equipamento dados) {
         String sql = "UPDATE equipamentos SET numIdentificador=<T>, nome=<T>, email=<T>, ddd_telefone=<T>, num_telefone=<T>, num_endereco=<T>, "
                                             + "rua_endereco=<T>, bairro_endereco=<T>, cidade_endereco=<T>, estado_endereco=<T>, "
-                                            + "WHERE id=" + String.valueOf(dados.getIdDatabase());
+                                            + "id_municipio=<T>, equipamento_enum=<T>"
+                                            + " WHERE id=" + String.valueOf(dados.getIdDatabase());
+        
         try {
             sql = createSql(dados, sql);
-                      
             Statement st = con.createStatement();
             st.execute(sql);
             closeStatementAndResultSet(null, st);
             
-            Equipamento teste = read(dados.getNumIdentificador());
+            Equipamento teste = read(dados.getNumIdentificador() + "-" + String.valueOf(dados.getTipo().getValue()));
             
             return teste != null && dados.getIdDatabase() == teste.getIdDatabase();
             
@@ -130,13 +141,11 @@ public class EquipamentoDAO implements CRUD<Equipamento, String>{
     }
 
     @Override
-    public boolean delete(String numIdentificador) {
-        Equipamento find = read(numIdentificador);
-        String sql = "DELETE FROM equipamentos WHERE id=<T> AND id_municipio=" + munId;
-        
+    public boolean delete(String key) {
+        Equipamento find = read(key);
         try {
             if(find != null){
-                sql = sql.replaceFirst("<T>",String.valueOf(find.getIdDatabase()));
+                String sql = "DELETE FROM equipamentos WHERE id=" + find.getIdDatabase();
                 Statement st = con.createStatement();
                 
                 st.execute(sql);
@@ -144,8 +153,9 @@ public class EquipamentoDAO implements CRUD<Equipamento, String>{
                 return true;
             }
         } catch (SQLException ex) {
-            SQL_ERROR_LOG.message("Error in delete Equipamentos!", ex);
+            SQL_ERROR_LOG.message("Error in delete Municipio!", ex);
         }
+        
         return false;
     }
 

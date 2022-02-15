@@ -4,14 +4,12 @@ public class Vinculo {
     private long id, idEquip;
     private String cpf, nome;
     private Cargo cargo;
-    private EquipamentoTipo equip;
 
-    public Vinculo(int id, int idEquip, String cpf, String nome, Cargo cargo, EquipamentoTipo equip) {
+    public Vinculo(int id, int idEquip, String cpf, String nome, Cargo cargo) {
         this.id = id;
         this.idEquip = idEquip;
         this.cpf = cpf;
         this.cargo = cargo;
-        this.equip = equip;
         this.nome = nome;
     }
 
@@ -47,14 +45,6 @@ public class Vinculo {
 
     public void setCargo(Cargo cargo) {
         this.cargo = cargo;
-    }
-
-    public EquipamentoTipo getEquip() {
-        return equip;
-    }
-
-    public void setEquip(EquipamentoTipo equip) {
-        this.equip = equip;
     }
 
     public String getNome() {
