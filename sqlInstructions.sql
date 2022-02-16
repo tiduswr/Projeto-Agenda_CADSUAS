@@ -53,13 +53,14 @@ cpf                    TEXT(14) NOT NULL,
 cargo_enum      	   INTEGER NOT NULL,
 id_equipamento         INTEGER NOT NULL,
 id_municipio           INTEGER NOT NULL,
+FOREIGN KEY(cpf) REFERENCES funcionarios(cpf) ON DELETE CASCADE ON UPDATE CASCADE,
 FOREIGN KEY(id_equipamento) REFERENCES equipamentos(id) ON DELETE CASCADE ON UPDATE CASCADE,
 FOREIGN KEY(id_municipio) REFERENCES municipios(id) ON DELETE CASCADE ON UPDATE CASCADE);
 
 CREATE TABLE IF NOT EXISTS funcionarios (
 id                     INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 nome                   TEXT(100) NOT NULL,
-cpf                    TEXT(14) NOT NULL,
+cpf                    TEXT(14) NOT NULL UNIQUE,
 escolaridade	       TEXT(100) NOT NULL,
 profissao              TEXT(100) NOT NULL,
 email                  TEXT(100) NOT NULL,

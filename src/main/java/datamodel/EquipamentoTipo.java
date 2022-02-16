@@ -89,7 +89,23 @@ public enum EquipamentoTipo {
         }
         
     }, 
-    OUTRO(11){
+    CENTRODIA(11){
+    
+        @Override
+        public String toString(){
+          return "Centro Dia";
+        }
+        
+    }, 
+    CENTROPOP(12){
+    
+        @Override
+        public String toString(){
+          return "Centro Pop";
+        }
+        
+    }, 
+    OUTRO(13){
     
         @Override
         public String toString(){
@@ -133,6 +149,10 @@ public enum EquipamentoTipo {
             case 10:
                 return EquipamentoTipo.CMDCA;
             case 11:
+                return EquipamentoTipo.CENTRODIA;
+            case 12:
+                return EquipamentoTipo.CENTROPOP;
+            case 13:
                 return EquipamentoTipo.OUTRO;
             default:
                 return null;
@@ -140,7 +160,7 @@ public enum EquipamentoTipo {
     }
     
     public static int getQtdEquipamentos(){
-        return 11;
+        return 14;
     }
     
 }

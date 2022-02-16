@@ -37,7 +37,7 @@ public enum Cargo {
     
         @Override
         public String toString(){
-          return "Presidente";
+          return "Conselheiro Presidente";
         }
         
     }, 
@@ -45,7 +45,7 @@ public enum Cargo {
     
         @Override
         public String toString(){
-          return "Vice Presidente";
+          return "Conselheiro Vice Presidente";
         }
         
     }, 
@@ -57,7 +57,79 @@ public enum Cargo {
         }
         
     },
-    Outro(7){
+    TECNICO_NIVEL_SUPERIOR(7){
+    
+        @Override
+        public String toString(){
+          return "Técnico de Nivel Superior";
+        }
+        
+    },
+    TECNICO_NIVEL_MEDIO(8){
+    
+        @Override
+        public String toString(){
+          return "Técnico de Nivel Médio";
+        }
+        
+    },
+    EDUCADOR_SOCIAL(9){
+    
+        @Override
+        public String toString(){
+          return "Educador Social";
+        }
+        
+    },
+    CADASTRADOR(10){
+    
+        @Override
+        public String toString(){
+          return "Cadastrador/Entrevistador Social";
+        }
+        
+    },
+    APOIO_ADM(11){
+    
+        @Override
+        public String toString(){
+          return "Apoio Administrativo";
+        }
+        
+    },
+    ESTAGIARIO(12){
+    
+        @Override
+        public String toString(){
+          return "Estagiario";
+        }
+        
+    },
+    SERVICOS_GERAIS(13){
+    
+        @Override
+        public String toString(){
+          return "Prefeito";
+        }
+        
+    },
+    CONS_TIT(14){
+    
+        @Override
+        public String toString(){
+          return "Conselheiro Titular";
+        }
+        
+    },
+    CONS_SUP(15){
+    
+        @Override
+        public String toString(){
+          return "Conselheiro Suplente";
+        }
+        
+    },
+    Outro(16){
     
         @Override
         public String toString(){
@@ -93,6 +165,24 @@ public enum Cargo {
             case 6:
                 return Cargo.PREFEITO;
             case 7:
+                return Cargo.TECNICO_NIVEL_SUPERIOR;
+            case 8:
+                return Cargo.TECNICO_NIVEL_MEDIO;
+            case 9:
+                return Cargo.EDUCADOR_SOCIAL;
+            case 10:
+                return Cargo.CADASTRADOR;
+            case 11:
+                return Cargo.APOIO_ADM;
+            case 12:
+                return Cargo.ESTAGIARIO;
+            case 13:
+                return Cargo.SERVICOS_GERAIS;
+            case 14:
+                return Cargo.CONS_TIT;
+            case 15:
+                return Cargo.CONS_SUP;  
+            case 16:
                 return Cargo.Outro;
             default:
                 return null;
@@ -100,7 +190,7 @@ public enum Cargo {
     }
     
     public static int getQtdCargos(){
-        return 7;
+        return 17;
     }
     
 }
