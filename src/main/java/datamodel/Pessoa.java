@@ -40,7 +40,7 @@ public abstract class Pessoa implements JSONTransform{
         this.nome = j.getString("nome");
         this.escolaridade = j.getString("escolaridade");
         this.profissao = j.getString("profissao");
-        this.rg = new RG(j.getString("rg"));
+        this.rg = new RG(j.get("rg").toString());
         
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         try {
@@ -50,8 +50,8 @@ public abstract class Pessoa implements JSONTransform{
         }
         
         this.email = j.getString("email");
-        this.fone = new Telefone(j.getString("telefone"));
-        this.endereco = new Endereco(j.getString("endereco"));
+        this.fone = new Telefone(j.get("telefone").toString());
+        this.endereco = new Endereco(j.get("endereco").toString());
     
     }    
     
@@ -152,14 +152,14 @@ public abstract class Pessoa implements JSONTransform{
         json.put("nome", nome);
         json.put("escolaridade", escolaridade);
         json.put("profissao", profissao);
-        json.put("rg", rg.toJson().toString());
+        json.put("rg", rg.toJson());
         
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         json.put("dtNascimento", sdf.format(dtNascimento));
         
         json.put("email", email);
-        json.put("telefone", fone.toJson().toString());
-        json.put("endereco", endereco.toJson().toString());
+        json.put("telefone", fone.toJson());
+        json.put("endereco", endereco.toJson());
         
         return json;
     }

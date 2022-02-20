@@ -37,13 +37,12 @@ public class Equipamento implements JSONTransform{
         this.idDatabase = j.getLong("id");
         this.numIdentificador = j.getString("numIdentificador");
         this.nome = j.getString("nome");
-        this.endereco = new Endereco(j.getString("endereco"));
-        this.fone = new Telefone(j.getString("telefone"));
+        this.endereco = new Endereco(j.get("endereco").toString());
+        this.fone = new Telefone(j.get("telefone").toString());
         this.email = j.getString("email");
-        this.tipo = EquipamentoTipo.getByJson(j.getString("tipo"));
+        this.tipo = EquipamentoTipo.getByJson(j.get("tipo").toString());
         
-        JSONArray arr = new JSONArray(j.getString("vinculados"));
-        
+        JSONArray arr = new JSONArray(j.get("vinculados").toString());
         arr.forEach(e -> {
             addFuncionarioVinculo(new Vinculo(e.toString()));
         });
@@ -155,20 +154,20 @@ public class Equipamento implements JSONTransform{
         json.put("id", idDatabase);
         json.put("numIdentificador", numIdentificador);
         json.put("nome", nome);
-        json.put("endereco", endereco.toJson().toString());
-        json.put("telefone", fone.toJson().toString());
+        json.put("endereco", endereco.toJson());
+        json.put("telefone", fone.toJson());
         json.put("email", email);
         
         JSONObject tpEqp = new JSONObject();
         tpEqp.put("code", tipo.getValue());
         tpEqp.put("nome", tipo.toString());
-        json.put("tipo", tpEqp.toString());
+        json.put("tipo", tpEqp);
         
         JSONArray arr = new JSONArray();
         this.funcionarios.forEach(e ->{
-            arr.put(e.toJson().toString());
+            arr.put(e.toJson());
         });
-        json.put("vinculados", arr.toString());
+        json.put("vinculados", arr);
         
         return json;
     }

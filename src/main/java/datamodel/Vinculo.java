@@ -22,7 +22,7 @@ public class Vinculo implements JSONTransform{
         this.id = j.getLong("id");
         this.idEquip = j.getLong("idEquip");
         this.cpf = j.getString("cpf");
-        this.cargo = Cargo.getByJson(j.getString("cargo"));
+        this.cargo = Cargo.getByJson(j.get("cargo").toString());
     
     }
     
@@ -75,7 +75,7 @@ public class Vinculo implements JSONTransform{
         jc.put("code", cargo.getValue());
         jc.put("nome", cargo.toString());
         
-        json.put("cargo", jc.toString());
+        json.put("cargo", jc);
         
         return json;
     }
