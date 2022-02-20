@@ -18,7 +18,7 @@ public class SQLiteConnection implements DatabaseConnect {
     
     public SQLiteConnection(String url){
         con = null;
-        this.url = url;
+        this.url = "jdbc:sqlite:" + url;
     }
     
     @Override

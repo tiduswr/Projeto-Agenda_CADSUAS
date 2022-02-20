@@ -3,19 +3,20 @@ package database.dao;
 import database.CreateDataBase;
 import database.DatabaseConnect;
 import database.SQLiteConnection;
-import datamodel.ContaBancaria;
+import datamodel.EmailComSenha;
 import datamodel.Municipio;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ContaBancariaDAOTest {
+public class EmailDAOTest {
     
-    private ContaBancariaDAO t;
+    private EmailDAO e;
     private MunicipioDAO mun;
-    private DatabaseConnect c;
-    private Class cl = ContaBancariaDAO.class;
     
-    public ContaBancariaDAOTest() {
+    private DatabaseConnect c;
+    private Class cl = EquipamentoDAO.class;
+    
+    public EmailDAOTest() {
         System.out.println("############ CONNECTING ON DATABASE");
         c = new SQLiteConnection("db/dbTeste.db");
         c.connect();
@@ -23,7 +24,8 @@ public class ContaBancariaDAOTest {
         
         mun = new MunicipioDAO(c.getConnection());
         mun.create(new Municipio(-1,"Teste", "tt", null));
-        t = new ContaBancariaDAO(c.getConnection(), mun.read("Teste-tt").getId());
+        
+        e = new EmailDAO(c.getConnection(), mun.read("Teste-tt").getId());
         
         System.out.println("############# END OF CONNECTION\n");
     }
@@ -32,37 +34,52 @@ public class ContaBancariaDAOTest {
     public void testCreate() {
         System.out.println("\n############# TEST OF CREATE");
         
-        assertTrue(t.create(new ContaBancaria(-1, "555", "CC HARLLEM", "329035", "FEAS", true))
-                , "Erro no teste create() da " + cl);
+        EmailComSenha d = new EmailComSenha();
+        
+        d.setEmail("teste@gmail.com");
+        d.setSenha("@senha");
+        d.setTipo("Adjunta");
+        
+        assertTrue(e.create(d), "Erro no teste create() da " + cl);
     }
+    
     @Test
     public void testRead() {
         System.out.println("############# TEST OF READ");
-        assertNotNull(t.read("555-329035"), "Erro no teste read() da " + cl);
+        assertNotNull(e.read("teste@gmail.com"), "Erro no teste read() da " + cl);
     }
+    
     @Test
     public void testUpdate() {
         System.out.println("############# TEST OF UPDATE");
         
-        assertTrue(t.update(new ContaBancaria(t.read("555-329035").getId(), "511", "CC HARLLEM", "444555", "FEAS", true))
-                , "Erro no teste create() da " + cl);
+        EmailComSenha d = new EmailComSenha();
+        
+        d.setEmail("update_teste@gmail.com");
+        d.setSenha("@senha");
+        d.setTipo("Adjunta");
+        d.setId(e.read("teste@gmail.com").getId());
+        
+        assertTrue(e.update(d), "Erro no teste update() da " + cl);
     }
+    
     @Test
     public void testList() {
         System.out.println("############# TEST OF LIST");
         System.out.println("\nPrintando lista:\n");
-        t.list().forEach(e -> {
+        e.list().forEach(em -> {
             
-            System.out.println(e.getAgencia() + "-" + e.getNum() + " -> " + e.getNome());
+            System.out.println(em.getEmail() + ": " + em.getSenha());
         
         });
         System.out.println("\n");
-        assertNotNull(t.list(), "Erro no teste list() da " + cl);;
+        assertNotNull(e.list(), "Erro no teste list() da " + cl);;
     }
+    
     @Test
     public void testDelete() {
         System.out.println("############# TEST OF DELETE\n");
-        assertTrue(t.delete("511-444555"), "Erro no teste delete() da " + cl);
+        assertTrue(e.delete("update_teste@gmail.com"), "Erro no teste delete() da " + cl);
         mun.delete("Teste-tt");
         c.closeConnection();
     }

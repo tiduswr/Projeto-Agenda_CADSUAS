@@ -1,0 +1,7 @@
+database/dao/MunicipioDAOTest.class
+database/dao/EmailDAOTest.class
+database/dao/VinculoDAOTest.class
+database/dao/EquipamentoDAOTest.class
+database/dao/ContaBancariaDAOTest.class
+database/dao/LeiDAOTest.class
+database/dao/FuncionarioDAOTest.class

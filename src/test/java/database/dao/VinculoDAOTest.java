@@ -30,7 +30,7 @@ public class VinculoDAOTest {
     
     public VinculoDAOTest() {
         System.out.println("############ CONNECTING ON DATABASE\n");
-        c = new SQLiteConnection();
+        c = new SQLiteConnection("db/dbTeste.db");
         c.connect();
         CreateDataBase.createDataBaseAndTables(c);
         

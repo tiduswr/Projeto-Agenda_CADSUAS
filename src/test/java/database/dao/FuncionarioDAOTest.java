@@ -22,7 +22,7 @@ public class FuncionarioDAOTest {
     
     public FuncionarioDAOTest() {
         System.out.println("############ CONNECTING ON DATABASE");
-        c = new SQLiteConnection();
+        c = new SQLiteConnection("db/dbTeste.db");
         c.connect();
         CreateDataBase.createDataBaseAndTables(c);
         

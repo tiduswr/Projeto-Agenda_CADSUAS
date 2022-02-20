@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="5" failures="0" name="database.dao.EquipamentoDAOTest" time="0.663" errors="0" skipped="0">
+<testsuite tests="5" failures="0" name="database.dao.EquipamentoDAOTest" time="0.653" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="16.0.1+9-24"/>
@@ -12,7 +12,7 @@
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
     <property name="user.country" value="BR"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="test" value="database.dao.EquipamentoDAOTest"/>
+    <property name="test" value="database.dao.**.*Test"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="user.dir" value="/home/tiduswr/NetBeansProjects/AgendaCADSUAS"/>
     <property name="java.vm.compressedOopsMode" value="32-bit"/>
@@ -42,7 +42,7 @@
     <property name="java.class.path" value="/home/tiduswr/netbeans-12.3/netbeans/java/maven/boot/plexus-classworlds-2.6.0.jar"/>
     <property name="java.vm.specification.version" value="16"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dtest=database.dao.EquipamentoDAOTest -Dmaven.ext.class.path=/home/tiduswr/netbeans-12.3/netbeans/java/maven-nblib/netbeans-eventspy.jar surefire:test"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dtest=database.dao.**.*Test -Dmaven.ext.class.path=/home/tiduswr/netbeans-12.3/netbeans/java/maven-nblib/netbeans-eventspy.jar surefire:test"/>
     <property name="java.home" value="/usr/lib/jvm/jdk-16.0.1"/>
     <property name="user.language" value="pt"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -57,9 +57,9 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.endian" value="little"/>
   </properties>
-  <testcase classname="database.dao.EquipamentoDAOTest" name="database.dao.EquipamentoDAOTest.testCreate" time="0.157"/>
-  <testcase classname="database.dao.EquipamentoDAOTest" name="database.dao.EquipamentoDAOTest.testRead" time="0"/>
-  <testcase classname="database.dao.EquipamentoDAOTest" name="database.dao.EquipamentoDAOTest.testUpdate" time="0.172"/>
-  <testcase classname="database.dao.EquipamentoDAOTest" name="database.dao.EquipamentoDAOTest.testList" time="0.013"/>
-  <testcase classname="database.dao.EquipamentoDAOTest" name="database.dao.EquipamentoDAOTest.testDelete" time="0.321"/>
+  <testcase classname="database.dao.EquipamentoDAOTest" name="database.dao.EquipamentoDAOTest.testCreate" time="0.186"/>
+  <testcase classname="database.dao.EquipamentoDAOTest" name="database.dao.EquipamentoDAOTest.testRead" time="0.002"/>
+  <testcase classname="database.dao.EquipamentoDAOTest" name="database.dao.EquipamentoDAOTest.testUpdate" time="0.166"/>
+  <testcase classname="database.dao.EquipamentoDAOTest" name="database.dao.EquipamentoDAOTest.testList" time="0.005"/>
+  <testcase classname="database.dao.EquipamentoDAOTest" name="database.dao.EquipamentoDAOTest.testDelete" time="0.294"/>
 </testsuite>

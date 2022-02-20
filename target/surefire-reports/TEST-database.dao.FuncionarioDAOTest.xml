@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="5" failures="0" name="database.dao.FuncionarioDAOTest" time="0.615" errors="0" skipped="0">
+<testsuite tests="5" failures="0" name="database.dao.FuncionarioDAOTest" time="0.687" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="16.0.1+9-24"/>
@@ -57,9 +57,9 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.endian" value="little"/>
   </properties>
-  <testcase classname="database.dao.FuncionarioDAOTest" name="database.dao.FuncionarioDAOTest.testCreate" time="0.157"/>
+  <testcase classname="database.dao.FuncionarioDAOTest" name="database.dao.FuncionarioDAOTest.testCreate" time="0.178"/>
   <testcase classname="database.dao.FuncionarioDAOTest" name="database.dao.FuncionarioDAOTest.testRead" time="0.002"/>
-  <testcase classname="database.dao.FuncionarioDAOTest" name="database.dao.FuncionarioDAOTest.testUpdate" time="0.146"/>
-  <testcase classname="database.dao.FuncionarioDAOTest" name="database.dao.FuncionarioDAOTest.testList" time="0.008"/>
-  <testcase classname="database.dao.FuncionarioDAOTest" name="database.dao.FuncionarioDAOTest.testDelete" time="0.302"/>
+  <testcase classname="database.dao.FuncionarioDAOTest" name="database.dao.FuncionarioDAOTest.testUpdate" time="0.164"/>
+  <testcase classname="database.dao.FuncionarioDAOTest" name="database.dao.FuncionarioDAOTest.testList" time="0.004"/>
+  <testcase classname="database.dao.FuncionarioDAOTest" name="database.dao.FuncionarioDAOTest.testDelete" time="0.339"/>
 </testsuite>

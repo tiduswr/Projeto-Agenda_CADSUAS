@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="5" failures="0" name="database.dao.ContaBancariaDAOTest" time="0.589" errors="0" skipped="0">
+<testsuite tests="5" failures="0" name="database.dao.LeiDAOTest" time="0.612" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="16.0.1+9-24"/>
@@ -57,9 +57,9 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.endian" value="little"/>
   </properties>
-  <testcase classname="database.dao.ContaBancariaDAOTest" name="database.dao.ContaBancariaDAOTest.testCreate" time="0.179"/>
-  <testcase classname="database.dao.ContaBancariaDAOTest" name="database.dao.ContaBancariaDAOTest.testRead" time="0.001"/>
-  <testcase classname="database.dao.ContaBancariaDAOTest" name="database.dao.ContaBancariaDAOTest.testUpdate" time="0.133"/>
-  <testcase classname="database.dao.ContaBancariaDAOTest" name="database.dao.ContaBancariaDAOTest.testList" time="0.003"/>
-  <testcase classname="database.dao.ContaBancariaDAOTest" name="database.dao.ContaBancariaDAOTest.testDelete" time="0.273"/>
+  <testcase classname="database.dao.LeiDAOTest" name="database.dao.LeiDAOTest.testCreate" time="0.177"/>
+  <testcase classname="database.dao.LeiDAOTest" name="database.dao.LeiDAOTest.testRead" time="0.002"/>
+  <testcase classname="database.dao.LeiDAOTest" name="database.dao.LeiDAOTest.testUpdate" time="0.144"/>
+  <testcase classname="database.dao.LeiDAOTest" name="database.dao.LeiDAOTest.testList" time="0.012"/>
+  <testcase classname="database.dao.LeiDAOTest" name="database.dao.LeiDAOTest.testDelete" time="0.277"/>
 </testsuite>

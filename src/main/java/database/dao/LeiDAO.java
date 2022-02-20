@@ -31,7 +31,10 @@ public class LeiDAO implements CRUD<Lei, String>{
     
     private String createSql(Lei dados, String sql){
         sql = sql.replaceFirst("<T>", String.valueOf(dados.getNum()));
-        sql = sql.replaceFirst("<T>", "'" + dados.getData() + "'");
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        sql = sql.replaceFirst("<T>", "'" + sdf.format(dados.getData()) + "'");
+        
         sql = sql.replaceFirst("<T>", "'" + dados.getAgrupamento() + "'");
         sql = sql.replaceFirst("<T>", "'" + dados.getDescricao() + "'");
         sql = sql.replaceFirst("<T>", munId);
@@ -78,7 +81,7 @@ public class LeiDAO implements CRUD<Lei, String>{
 
     @Override
     public Lei read(String searchValue) {
-        String sql = "SELECT * FROM leis WHERE cpf=<T> AND data=<T> AND id_municipio=<T>";
+        String sql = "SELECT * FROM leis WHERE num=<T> AND data=<T> AND id_municipio=<T>";
         
         try {
             String splited[] = searchValue.split("-");

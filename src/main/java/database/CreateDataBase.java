@@ -14,6 +14,7 @@ import util.SQL_ERROR_LOG;
 
 public class CreateDataBase {
     private static final ArrayList<String> sqlTables = new ArrayList<String>();
+    private static boolean initialized = false;
     
     private static boolean createTable(String sql,DatabaseConnect con) {
         System.out.println("DB_LOG -> Creating table if not exist in database!");
@@ -29,7 +30,10 @@ public class CreateDataBase {
     }
     
     public static boolean createDataBaseAndTables(DatabaseConnect con){
-        readTextFileWithSqlInstructions();
+        if(!initialized) {
+            readTextFileWithSqlInstructions();
+            initialized = true;
+        }
         return sqlTables.stream().noneMatch(t -> (!createTable(t, con)));
     }
     

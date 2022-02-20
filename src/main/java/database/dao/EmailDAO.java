@@ -65,7 +65,7 @@ public class EmailDAO implements CRUD<EmailComSenha, String> {
 
     @Override
     public EmailComSenha read(String searchValue) {
-        String sql = "SELECT * FROM emails WHERE email=" + searchValue + " AND id_municipio=" + munId;
+        String sql = "SELECT * FROM emails WHERE email='" + searchValue + "' AND id_municipio=" + munId;
         
         try {
             Statement st = con.createStatement();
