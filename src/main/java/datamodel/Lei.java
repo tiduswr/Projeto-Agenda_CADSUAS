@@ -1,7 +1,10 @@
 package datamodel;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.json.JSONObject;
 
 public class Lei implements JSONTransform{
@@ -20,6 +23,24 @@ public class Lei implements JSONTransform{
     
     public Lei(){}
 
+    public Lei(String json){
+        JSONObject j = new JSONObject(json);
+        
+        this.id = j.getLong("id");
+        this.num = j.getInt("num");
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            this.data = sdf.parse(j.getString("data"));
+        } catch (ParseException ex) {
+            Logger.getLogger(Lei.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        this.descricao = j.getString("descricao");
+        this.agrupamento = j.getString("agrupamento");
+        
+    }
+    
     public long getId() {
         return id;
     }

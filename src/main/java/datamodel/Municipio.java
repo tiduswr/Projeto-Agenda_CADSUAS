@@ -1,6 +1,5 @@
 package datamodel;
 
-import java.text.SimpleDateFormat;
 import org.json.JSONObject;
 
 public class Municipio implements JSONTransform{
@@ -15,6 +14,16 @@ public class Municipio implements JSONTransform{
     }
     
     public Municipio(){}
+    
+    public Municipio(String json){
+        JSONObject j = new JSONObject(json);
+        
+        this.id = j.getLong("id");
+        this.nome = j.getString("nome");
+        this.uf = j.getString("uf");
+        this.iconPath = j.getString("iconPath");
+    
+    }
     
     public long getId() {
         return id;

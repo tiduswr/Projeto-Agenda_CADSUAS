@@ -17,7 +17,18 @@ public class ContaBancaria implements JSONTransform{
     }
     
     public ContaBancaria(){}
-
+    
+    public ContaBancaria(String json){
+        JSONObject j = new JSONObject(json);
+        
+        this.id = j.getLong("id");
+        this.nome = j.getString("nome");
+        this.num = j.getString("num");
+        this.tipo = j.getString("tipo");
+        this.agencia = j.getString("agencia");
+        this.status = j.getBoolean("status");
+    }
+    
     public long getId() {
         return id;
     }

@@ -1,11 +1,23 @@
 package datamodel;
 
-public enum Cargo {
+import org.json.JSONObject;
+
+public enum Cargo implements JSONTransform{
     COORDENADOR(0){
     
         @Override
         public String toString(){
           return "Coordenador";
+        }
+
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
         }
         
     }, 
@@ -16,12 +28,32 @@ public enum Cargo {
           return "Secretario";
         }
         
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
+        }
+        
     }, 
     SECRETARIO_ADJUNTO(2){
     
         @Override
         public String toString(){
           return "Secretário Adjunto";
+        }
+        
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
         }
         
     }, 
@@ -32,12 +64,32 @@ public enum Cargo {
           return "Secretário Executivo";
         }
         
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
+        }
+        
     }, 
     PRESIDENTE(4){
     
         @Override
         public String toString(){
           return "Conselheiro Presidente";
+        }
+        
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
         }
         
     }, 
@@ -48,12 +100,32 @@ public enum Cargo {
           return "Conselheiro Vice Presidente";
         }
         
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
+        }
+        
     }, 
     PREFEITO(6){
     
         @Override
         public String toString(){
           return "Prefeito";
+        }
+        
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
         }
         
     },
@@ -64,12 +136,32 @@ public enum Cargo {
           return "Técnico de Nivel Superior";
         }
         
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
+        }
+        
     },
     TECNICO_NIVEL_MEDIO(8){
     
         @Override
         public String toString(){
           return "Técnico de Nivel Médio";
+        }
+        
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
         }
         
     },
@@ -80,12 +172,32 @@ public enum Cargo {
           return "Educador Social";
         }
         
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
+        }
+        
     },
     CADASTRADOR(10){
     
         @Override
         public String toString(){
           return "Cadastrador/Entrevistador Social";
+        }
+        
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
         }
         
     },
@@ -96,12 +208,32 @@ public enum Cargo {
           return "Apoio Administrativo";
         }
         
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
+        }
+        
     },
     ESTAGIARIO(12){
     
         @Override
         public String toString(){
           return "Estagiario";
+        }
+        
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
         }
         
     },
@@ -112,12 +244,32 @@ public enum Cargo {
           return "Prefeito";
         }
         
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
+        }
+        
     },
     CONS_TIT(14){
     
         @Override
         public String toString(){
           return "Conselheiro Titular";
+        }
+        
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
         }
         
     },
@@ -128,12 +280,32 @@ public enum Cargo {
           return "Conselheiro Suplente";
         }
         
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
+        }
+        
     },
     VISITADOR_PCF(16){
     
         @Override
         public String toString(){
           return "Visitador Criança Feliz";
+        }
+        
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
         }
         
     },
@@ -144,12 +316,32 @@ public enum Cargo {
           return "Supervisor Criança Feliz";
         }
         
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
+        }
+        
     },
     Outro(18){
     
         @Override
         public String toString(){
           return "Outro";
+        }
+        
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
         }
         
     };
@@ -162,6 +354,14 @@ public enum Cargo {
     
     public int getValue(){
         return this.value;
+    }
+    
+    public static Cargo getByJson(String json){
+        JSONObject j = new JSONObject(json);
+        
+        int value = j.getInt("code");
+        
+        return Cargo.getByInt(value);
     }
     
     public static Cargo getByInt(int i){

@@ -1,8 +1,10 @@
 package datamodel;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import org.json.JSONArray;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.json.JSONObject;
 
 public abstract class Pessoa implements JSONTransform{
@@ -29,7 +31,30 @@ public abstract class Pessoa implements JSONTransform{
     }
     
     public Pessoa(){}
-
+    
+    public Pessoa(String json){
+        JSONObject j = new JSONObject(json);
+        
+        this.idDatabase = j.getLong("id");
+        this.cpf = j.getString("cpf");
+        this.nome = j.getString("nome");
+        this.escolaridade = j.getString("escolaridade");
+        this.profissao = j.getString("profissao");
+        this.rg = new RG(j.getString("rg"));
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            this.dtNascimento = sdf.parse(j.getString("dtNascimento"));
+        } catch (ParseException ex) {
+            Logger.getLogger(Pessoa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        this.email = j.getString("email");
+        this.fone = new Telefone(j.getString("telefone"));
+        this.endereco = new Endereco(j.getString("endereco"));
+    
+    }    
+    
     public String getCpf() {
         return cpf;
     }
@@ -122,7 +147,7 @@ public abstract class Pessoa implements JSONTransform{
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         
-        json.put("idDatabase", idDatabase);
+        json.put("id", idDatabase);
         json.put("cpf", cpf);
         json.put("nome", nome);
         json.put("escolaridade", escolaridade);
@@ -133,7 +158,7 @@ public abstract class Pessoa implements JSONTransform{
         json.put("dtNascimento", sdf.format(dtNascimento));
         
         json.put("email", email);
-        json.put("fone", fone.toJson().toString());
+        json.put("telefone", fone.toJson().toString());
         json.put("endereco", endereco.toJson().toString());
         
         return json;

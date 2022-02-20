@@ -1,7 +1,10 @@
 package datamodel;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.json.JSONObject;
 
 public class RG implements JSONTransform{
@@ -16,6 +19,22 @@ public class RG implements JSONTransform{
     }
     
     public RG(){}
+    
+    public RG(String json){
+        JSONObject j = new JSONObject(json);
+        
+        this.numero = j.getString("numero");
+        this.og = j.getString("og");
+        this.uf = j.getString("uf");
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            this.dtEmissao = sdf.parse(j.getString("dtEmissao"));
+        } catch (ParseException ex) {
+            Logger.getLogger(RG.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
     
     public String getNumero() {
         return numero;

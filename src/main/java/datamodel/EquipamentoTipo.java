@@ -1,11 +1,23 @@
 package datamodel;
 
-public enum EquipamentoTipo {
+import org.json.JSONObject;
+
+public enum EquipamentoTipo implements JSONTransform{
     Prefeitura(0){
     
         @Override
         public String toString(){
           return "Prefeitura";
+        }
+
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
         }
         
     },
@@ -16,12 +28,32 @@ public enum EquipamentoTipo {
           return "Secretaria";
         }
         
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
+        }
+        
     },
     CMAS(2){
     
         @Override
         public String toString(){
           return "CMAS";
+        }
+        
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
         }
         
     }, 
@@ -32,12 +64,32 @@ public enum EquipamentoTipo {
           return "FMAS";
         }
         
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
+        }
+        
     }, 
     PBF(4){
     
         @Override
         public String toString(){
           return "PBF";
+        }
+        
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
         }
         
     }, 
@@ -48,12 +100,32 @@ public enum EquipamentoTipo {
           return "CRAS";
         }
         
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
+        }
+        
     }, 
     CREAS(6){
     
         @Override
         public String toString(){
           return "CREAS";
+        }
+        
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
         }
         
     }, 
@@ -64,12 +136,32 @@ public enum EquipamentoTipo {
           return "SCFV";
         }
         
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
+        }
+        
     }, 
     Acolhimento(8){
     
         @Override
         public String toString(){
           return "Acolhimento";
+        }
+        
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
         }
         
     }, 
@@ -80,12 +172,32 @@ public enum EquipamentoTipo {
           return "Conselho Tutelar";
         }
         
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
+        }
+        
     }, 
     CMDCA(10){
     
         @Override
         public String toString(){
           return "CMDCA";
+        }
+        
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
         }
         
     }, 
@@ -96,6 +208,16 @@ public enum EquipamentoTipo {
           return "Centro Dia";
         }
         
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
+        }
+        
     }, 
     CENTROPOP(12){
     
@@ -104,12 +226,32 @@ public enum EquipamentoTipo {
           return "Centro Pop";
         }
         
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
+        }
+        
     }, 
     OUTRO(13){
     
         @Override
         public String toString(){
           return "Outro";
+        }
+        
+        @Override
+        public JSONObject toJson() {
+            JSONObject json = new JSONObject();
+            
+            json.put("code", getValue());
+            json.put("nome", toString());
+            
+            return json;
         }
         
     };
@@ -122,6 +264,14 @@ public enum EquipamentoTipo {
     
     public int getValue(){
         return this.value;
+    }
+    
+    public static EquipamentoTipo getByJson(String json){
+        JSONObject j = new JSONObject(json);
+        
+        int value = j.getInt("code");
+        
+        return EquipamentoTipo.getByInt(value);
     }
     
     public static EquipamentoTipo getByInt(int i){

@@ -17,6 +17,17 @@ public class Endereco implements JSONTransform{
     
     public Endereco(){}
     
+    public Endereco(String json){
+        JSONObject j = new JSONObject(json);
+        
+        this.rua = j.getString("rua");
+        this.bairro = j.getString("bairro");
+        this.cidade = j.getString("cidade");
+        this.estado = j.getString("estado");
+        this.numCasa = j.getInt("numCasa");
+        
+    }
+    
     public String getEnderecoCompleto(){
         return getRua() + ", " + String.valueOf(getNumCasa()) + ", " + 
                 getBairro() + ", " + getEstado() + ", Brasil.";

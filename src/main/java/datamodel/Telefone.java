@@ -11,6 +11,15 @@ public class Telefone implements JSONTransform{
         this.numero = numero;
     }
     
+    public Telefone(){}
+    
+    public Telefone(String json){
+        JSONObject j = new JSONObject(json);
+        
+        this.ddd = j.getInt("ddd");
+        this.numero = j.getString("numero");
+    }
+    
     public int getDdd() {
         return ddd;
     }

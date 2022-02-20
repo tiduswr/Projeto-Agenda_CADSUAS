@@ -14,7 +14,16 @@ public class EmailComSenha implements JSONTransform{
     }
     
     public EmailComSenha(){}
-
+    
+    public EmailComSenha(String json){
+        JSONObject j = new JSONObject(json);
+        
+        this.id = j.getLong("id");
+        this.email = j.getString("email");
+        this.senha = j.getString("senha");
+        this.tipo = j.getString("tipo");
+    }
+    
     public long getId() {
         return id;
     }
