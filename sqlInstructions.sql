@@ -49,7 +49,7 @@ FOREIGN KEY(id_municipio) REFERENCES municipios(id) ON DELETE CASCADE ON UPDATE 
 
 CREATE TABLE IF NOT EXISTS vinculos (
 id                     INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-cpf                    TEXT(14) NOT NULL UNIQUE,
+cpf                    TEXT(14) NOT NULL,
 cargo_enum      	   INTEGER NOT NULL,
 id_equipamento         INTEGER NOT NULL,
 id_municipio           INTEGER NOT NULL,
