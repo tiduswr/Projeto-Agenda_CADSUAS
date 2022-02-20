@@ -2,7 +2,6 @@ package database.dao;
 
 import database.CRUD;
 import datamodel.Cargo;
-import datamodel.EquipamentoTipo;
 import datamodel.Vinculo;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -86,8 +85,8 @@ public class VinculoDAO implements CRUD<Vinculo, String>{
 
     @Override
     public boolean update(Vinculo dados) {        
-        String sql = "UPDATE vinculos SET cpf=<T>, cargo_enum=<T>, equipamento_enum=<T>, id_equipamento=<T>, "
-                + "id_municipio=<T> WHERE id=" + String.valueOf(dados.getId());
+        String sql = "UPDATE vinculos SET cpf=<T>, cargo_enum=<T>, id_equipamento=<T>, id_municipio=<T> "
+                + "WHERE id=" + String.valueOf(dados.getId());
         try {
             
             sql = createSql(dados, sql);

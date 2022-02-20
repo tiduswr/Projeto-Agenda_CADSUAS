@@ -2,7 +2,6 @@ package database.dao;
 
 import database.CRUD;
 import datamodel.EmailComSenha;
-import datamodel.Vinculo;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -129,7 +129,23 @@ public enum Cargo {
         }
         
     },
-    Outro(16){
+    VISITADOR_PCF(16){
+    
+        @Override
+        public String toString(){
+          return "Visitador Criança Feliz";
+        }
+        
+    },
+    SUPERVISOR_PCF(17){
+    
+        @Override
+        public String toString(){
+          return "Supervisor Criança Feliz";
+        }
+        
+    },
+    Outro(18){
     
         @Override
         public String toString(){

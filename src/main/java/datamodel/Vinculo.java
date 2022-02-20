@@ -2,15 +2,14 @@ package datamodel;
 
 public class Vinculo {
     private long id, idEquip;
-    private String cpf, nome;
+    private String cpf;
     private Cargo cargo;
 
-    public Vinculo(int id, int idEquip, String cpf, String nome, Cargo cargo) {
+    public Vinculo(int id, int idEquip, String cpf, Cargo cargo) {
         this.id = id;
         this.idEquip = idEquip;
         this.cpf = cpf;
         this.cargo = cargo;
-        this.nome = nome;
     }
 
     public Vinculo(){}
@@ -45,14 +44,6 @@ public class Vinculo {
 
     public void setCargo(Cargo cargo) {
         this.cargo = cargo;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
     
 }

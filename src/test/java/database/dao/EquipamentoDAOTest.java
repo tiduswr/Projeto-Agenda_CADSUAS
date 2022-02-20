@@ -3,7 +3,6 @@ package database.dao;
 import database.CreateDataBase;
 import database.DatabaseConnect;
 import database.SQLiteConnection;
-import datamodel.ContaBancaria;
 import datamodel.Endereco;
 import datamodel.Equipamento;
 import datamodel.EquipamentoTipo;
