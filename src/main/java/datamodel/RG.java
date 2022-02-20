@@ -1,8 +1,10 @@
 package datamodel;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import org.json.JSONObject;
 
-public class RG {
+public class RG implements JSONTransform{
     private String numero, og, uf;
     private Date dtEmissao;
 
@@ -45,6 +47,24 @@ public class RG {
 
     public void setDtEmissao(Date dtEmissao) {
         this.dtEmissao = dtEmissao;
+    }
+
+    @Override
+    public String toString() {
+        return "RG{" + "numero=" + numero + ", og=" + og + ", uf=" + uf + ", dtEmissao=" + dtEmissao + '}';
+    }
+    
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        
+        json.put("numero", numero);
+        json.put("og", og);
+        json.put("uf", uf);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        json.put("dtEmissao", sdf.format(dtEmissao));
+        
+        return json;
     }
     
 }

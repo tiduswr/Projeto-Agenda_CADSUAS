@@ -1,8 +1,9 @@
 package datamodel;
 
 import java.util.Objects;
+import org.json.JSONObject;
 
-public class Endereco {
+public class Endereco implements JSONTransform{
     private String rua, bairro, cidade, estado;
     private int numCasa;
 
@@ -80,5 +81,24 @@ public class Endereco {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Endereco{" + "rua=" + rua + ", bairro=" + bairro + ", cidade=" + 
+                cidade + ", estado=" + estado + ", numCasa=" + numCasa + '}';
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        
+        json.put("rua", rua);
+        json.put("bairro", bairro);
+        json.put("cidade", cidade);
+        json.put("estado", estado);
+        json.put("numCasa", numCasa);
+        
+        return json;
     }
 }

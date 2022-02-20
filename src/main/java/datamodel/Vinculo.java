@@ -1,6 +1,8 @@
 package datamodel;
 
-public class Vinculo {
+import org.json.JSONObject;
+
+public class Vinculo implements JSONTransform{
     private long id, idEquip;
     private String cpf;
     private Cargo cargo;
@@ -44,6 +46,28 @@ public class Vinculo {
 
     public void setCargo(Cargo cargo) {
         this.cargo = cargo;
+    }
+
+    @Override
+    public String toString() {
+        return "Vinculo{" + "id=" + id + ", idEquip=" + idEquip + ", cpf=" + cpf + ", cargo=" + cargo + '}';
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        
+        json.put("id", id);
+        json.put("idEquip", idEquip);
+        json.put("cpf", cpf);
+        
+        JSONObject jc = new JSONObject();
+        jc.put("code", cargo.getValue());
+        jc.put("nome", cargo.toString());
+        
+        json.put("cargo", jc);
+        
+        return json;
     }
     
 }

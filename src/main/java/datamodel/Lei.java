@@ -1,8 +1,10 @@
 package datamodel;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import org.json.JSONObject;
 
-public class Lei {
+public class Lei implements JSONTransform{
     private long id;
     private int num;
     private Date data;
@@ -56,6 +58,28 @@ public class Lei {
 
     public void setAgrupamento(String agrupamento) {
         this.agrupamento = agrupamento;
+    }
+
+    @Override
+    public String toString() {
+        return "Lei{" + "id=" + id + ", num=" + num + ", data=" + data + 
+                ", agrupamento=" + agrupamento + ", descricao=" + descricao + '}';
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        
+        json.put("id", id);
+        json.put("num", num);
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        json.put("data", sdf.format(data));
+        
+        json.put("agrupamento", agrupamento);
+        json.put("descricao", descricao);
+        
+        return json;
     }
     
 }

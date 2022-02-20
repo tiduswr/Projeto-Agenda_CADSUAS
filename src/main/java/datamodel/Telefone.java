@@ -1,6 +1,8 @@
 package datamodel;
 
-public class Telefone {
+import org.json.JSONObject;
+
+public class Telefone implements JSONTransform{
     private int ddd;
     private String numero;
 
@@ -28,6 +30,16 @@ public class Telefone {
     public String getNumeroFormatado(){
         return "(" + String.valueOf(ddd) + ")" + numero.substring(0, 0) + 
                 numero.substring(1, 5) + "-" + numero.substring(5,numero.length());
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        
+        json.put("ddd", ddd);
+        json.put("numero", numero);
+        
+        return json;
     }
     
 }

@@ -1,8 +1,11 @@
 package datamodel;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
-public abstract class Pessoa {
+public abstract class Pessoa implements JSONTransform{
     private long idDatabase;
     private String cpf, nome, escolaridade, profissao;
     private RG rg;
@@ -105,6 +108,35 @@ public abstract class Pessoa {
 
     public void setIdDatabase(long idDatabase) {
         this.idDatabase = idDatabase;
+    }
+
+    @Override
+    public String toString() {
+        return "Pessoa{" + "idDatabase=" + idDatabase + ", cpf=" + cpf + ", nome=" + nome + 
+                ", escolaridade=" + escolaridade + ", profissao=" + profissao + ", rg=" + rg + 
+                ", dtNascimento=" + dtNascimento + ", email=" + email + ", fone=" + fone + 
+                ", endereco=" + endereco + '}';
+    }
+    
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        
+        json.put("idDatabase", idDatabase);
+        json.put("cpf", cpf);
+        json.put("nome", nome);
+        json.put("escolaridade", escolaridade);
+        json.put("profissao", profissao);
+        json.put("rg", rg.toJson().toString());
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        json.put("dtNascimento", sdf.format(dtNascimento));
+        
+        json.put("email", email);
+        json.put("fone", fone.toJson().toString());
+        json.put("endereco", endereco.toJson().toString());
+        
+        return json;
     }
     
 }

@@ -1,8 +1,10 @@
 package datamodel;
 
 import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
-public class Equipamento {
+public class Equipamento implements JSONTransform{
     private long idDatabase;
     private String numIdentificador;
     private String nome;
@@ -117,6 +119,35 @@ public class Equipamento {
 
     public void setTipo(EquipamentoTipo tipo) {
         this.tipo = tipo;
+    }
+
+    @Override
+    public String toString() {
+        return "Equipamento{" + "idDatabase=" + idDatabase + ", numIdentificador=" + 
+                numIdentificador + ", nome=" + nome + ", endereco=" + endereco + ", fone=" + 
+                fone + ", email=" + email + ", tipo=" + tipo + ", funcionarios=" + funcionarios + '}';
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        
+        json.put("idDatabase", idDatabase);
+        json.put("numIdentificador", numIdentificador);
+        json.put("nome", nome);
+        json.put("endereco", endereco.toJson().toString());
+        json.put("fone", fone.toJson().toString());
+        json.put("email", email);
+        
+        JSONObject tpEqp = new JSONObject();
+        tpEqp.put("code", tipo.getValue());
+        tpEqp.put("nome", tipo.toString());
+        json.put("tipo", tpEqp);
+        
+        JSONArray arr = new JSONArray(funcionarios);
+        json.put("vinculados", arr.toString());
+        
+        return json;
     }
     
 }

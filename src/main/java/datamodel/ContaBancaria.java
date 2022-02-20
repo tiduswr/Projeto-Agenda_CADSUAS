@@ -1,6 +1,8 @@
 package datamodel;
 
-public class ContaBancaria {
+import org.json.JSONObject;
+
+public class ContaBancaria implements JSONTransform{
     private long id;
     private String nome, agencia, num, tipo;
     private boolean status;
@@ -62,6 +64,26 @@ public class ContaBancaria {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "ContaBancaria{" + "id=" + id + ", nome=" + nome + ", agencia=" + 
+                agencia + ", num=" + num + ", tipo=" + tipo + ", status=" + status + '}';
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        
+        json.put("id", id);
+        json.put("nome", nome);
+        json.put("agencia", agencia);
+        json.put("num", num);
+        json.put("tipo", tipo);
+        json.put("status", status);
+        
+        return json;
     }
     
 }

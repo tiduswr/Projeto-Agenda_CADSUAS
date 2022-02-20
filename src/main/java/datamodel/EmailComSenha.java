@@ -1,6 +1,8 @@
 package datamodel;
 
-public class EmailComSenha {
+import org.json.JSONObject;
+
+public class EmailComSenha implements JSONTransform{
     private long id;
     private String email, senha, tipo;
 
@@ -45,4 +47,15 @@ public class EmailComSenha {
         this.tipo = tipo;
     }
     
+    @Override
+    public JSONObject toJson(){
+        JSONObject json = new JSONObject();
+        
+        json.put("id", id);
+        json.put("email", email);
+        json.put("senha", senha);
+        json.put("tipo", tipo);
+        
+        return json;
+    }
 }
