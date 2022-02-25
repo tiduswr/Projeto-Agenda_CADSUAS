@@ -25,15 +25,15 @@ FOREIGN KEY(id_municipio) REFERENCES municipios(id) ON DELETE CASCADE ON UPDATE 
 
 CREATE TABLE IF NOT EXISTS emails (
 id                     INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-email                  TEXT(50) NOT NULL UNIQUE,
-senha                  TEXT(50) NOT NULL,
+email                  TEXT(100) NOT NULL UNIQUE,
+senha                  TEXT(100) NOT NULL,
 tipo                   TEXT(50) NOT NULL,
 id_municipio           INTEGER NOT NULL,
 FOREIGN KEY(id_municipio) REFERENCES municipios(id) ON DELETE CASCADE ON UPDATE CASCADE);
 
 CREATE TABLE IF NOT EXISTS equipamentos (
 id                     INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-numIdentificador       TEXT(30) NOT NULL,
+numIdentificador       TEXT(30),
 nome                   TEXT(100) NOT NULL,
 equipamento_enum	   INTEGER NOT NULL,
 email                  TEXT(50),
